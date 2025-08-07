@@ -9,7 +9,6 @@ services:
 
   flask:
     build: .
-    container_name: i-count
     ports:
       - "5003:5003"
     depends_on:
