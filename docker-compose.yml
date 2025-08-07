@@ -1,0 +1,19 @@
+services:
+  redis:
+    image: redis
+    container_name: redis-db
+    ports:
+      - "6379:6379"
+
+  flask:
+    build: .
+    container_name: i-count
+    ports:
+      - "5003:5003"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+
+
+
