@@ -1,23 +1,25 @@
+#redis service - data base always starts first
 services:
-  redis:
-    image: redis
-    container_name: redis-db
+  redis: 
+    image: redis #use redis image 
+    container_name: redis-db #specify container name for redis
     ports:
-      - "6379:6379"
+      - "6379:6379" #set ports for redis acces
     volumes:
-      - redis-data:/data
-
-  flask:
-    build: .
+      - redis-data:/data # setting data volume so redis can store visitor count 
+      #this is done so if the container goes offline data is saved 
+#icound / flask app service - application comes after database load
+  icount: # naming the compose container
+    build: . #take the docker build and flask app from this directory
     ports:
-      - "5003:5003"
+      - "5003:5003" #set ports for flask app
     depends_on:
-      - redis
+      - redis #will only start if redis starts correctly
     environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - REDIS_HOST=redis #connecting redis environment for count
+      - REDIS_PORT=6379 #connecting redis port for count
     
 volumes:
-  redis-data:
+  redis-data: #data so visit count can save 
 
 
