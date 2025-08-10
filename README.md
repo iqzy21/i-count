@@ -1,4 +1,4 @@
-# i-count: Flask Redis Containerisation Project
+# i-count: Flask + Redis Containerisation Project
 
 **Project Overview:** A hands-on containerisation project demonstrating multi-service Docker deployment using Flask web application with Redis database integration, custom networking, and Docker Compose orchestration.
 
