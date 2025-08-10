@@ -86,4 +86,15 @@ finally it came to us9ing docker compose so i wouldnt have to make a custom netw
 it was pretty simple to make 
 <img width="724" height="499" alt="image" src="https://github.com/user-attachments/assets/b98528dd-1411-4372-869c-425f21440e14" />
 once created all i do is docker compose up 
+<img width="396" height="106" alt="Screenshot 2025-08-10 035240" src="https://github.com/user-attachments/assets/3712224a-0b34-4ffa-a201-5d3f76afcdd9" />
+
+and here is the final result 
+<img width="1917" height="1028" alt="Screenshot 2025-08-10 035352" src="https://github.com/user-attachments/assets/1249ec41-46c2-4257-8b2f-2ff998ff41eb" />
+
+if i had to say this project really went well as i reenforced my knowledge on docker and was able to deploy an app with containerisation 
+
+plans for the future:
+scale with nginx image 
+deploy live and push to amazon ecr 
+
 
