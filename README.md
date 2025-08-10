@@ -1,100 +1,233 @@
-<img width="1917" height="1028" alt="image" src="https://github.com/user-attachments/assets/3f8b2a6a-6751-4140-b2d2-d3e01b64ad6c" /># i-count - Docker Project
-in this project i put my docker skills to the test and containerised and deployed a flask app using redis 
-i decied to make a local host website with a visitor counter and have seperate routes for each page 
-at then end of the link 
-/ = should show the main page
-count/ = shout show the visitor count page 
-<img width="1918" height="1033" alt="Screenshot 2025-08-09 234413" src="https://github.com/user-attachments/assets/767f705c-d451-4aa4-ae1f-423c39809060" />
-<img width="1919" height="1029" alt="Screenshot 2025-08-09 234403" src="https://github.com/user-attachments/assets/8452f952-1c18-4d2d-ab8c-c29a5d0bfca2" />
+# i-count: Flask Redis Containerisation Project
 
-first i created my 3 necesarry files docker file, docker compose and app.py 
-<img width="163" height="68" alt="image" src="https://github.com/user-attachments/assets/15987638-2f02-41ca-9021-c40000118333" />
-next i decided i wanted to style my pages so i added html files for them with a templates directory 
-<img width="162" height="86" alt="image" src="https://github.com/user-attachments/assets/afd01b86-bf55-4205-b1cd-d0d856a53ad6" />
+**Project Overview:** A hands-on containerisation project demonstrating multi-service Docker deployment using Flask web application with Redis database integration, custom networking, and Docker Compose orchestration.
 
-i then added the code for my flask app <img width="716" height="641" alt="image" src="https://github.com/user-attachments/assets/7e98be3d-7746-4858-8db5-a1454f24c9de" />
+<img width="1917" height="1028" alt="Screenshot 2025-08-10 035352" src="https://github.com/user-attachments/assets/01396dce-053f-4289-ab87-03d8870c1f52" />
 
-after that i added the html needed to style my pages 
-<img width="1397" height="1007" alt="image" src="https://github.com/user-attachments/assets/51e47249-c12d-4c27-9084-e7e11577fd90" />
-<img width="401" height="194" alt="image" src="https://github.com/user-attachments/assets/6cc23dcc-f02c-4dab-a2f2-5d32834f5084" />
-<img width="638" height="210" alt="image" src="https://github.com/user-attachments/assets/63375824-92a0-42d1-9e38-19ae7043c2b9" />
 
-once that was complete i wanted to reinforce what io have learned about docker 
-so once that was completed i first ran my app using the python command to check if it was working 
-<img width="603" height="161" alt="Screenshot 2025-08-10 015137" src="https://github.com/user-attachments/assets/bd19658f-7890-455c-9b11-ef34a67b4e7f" />
+---
 
-after that i added code into my docker file in order to create an image out of my web app so that i could containerise it 
-<img width="622" height="355" alt="image" src="https://github.com/user-attachments/assets/080ce2a3-3c05-498a-968f-b81b947c2e13" />
+## 🎯 Project Objectives
 
-next i built the image and made it into a container .
-command i used to build 
-docker build -t icount-test . 
-the build command creats and image, -t tags it with a name, . specifies this directory
-<img width="616" height="251" alt="image" src="https://github.com/user-attachments/assets/acd89586-2a0f-4eda-b76a-474892395755" />
-<img width="965" height="345" alt="image" src="https://github.com/user-attachments/assets/bfd15ef3-56dc-42ce-b684-9016ec8f772d" />
+- Containerise a Flask web application using Docker
+- Implement Redis database integration for visitor counting functionality
+- Configure custom Docker networking for inter-container communication
+- Utilise Docker Compose for multi-service orchestration
+- Apply systematic troubleshooting techniques for container connectivity issues
 
-command i used to containerise and run 
-the run command runs the image as a cointainer -d means to deattach it to run as a container  --name sets the name -p sets the port then at the end you choose your image 
-docker run -d --name icount-test -p 5003:5003 icount-test 
-<img width="1149" height="136" alt="image" src="https://github.com/user-attachments/assets/825a43ac-b9ec-4aa0-9536-ac536b77a535" />
+---
 
-final product 
-<img width="1914" height="1031" alt="image" src="https://github.com/user-attachments/assets/fbf015e0-1ade-459a-ae34-a547cd769c93" />
+## 🏗️ Application Architecture
 
-The next thing i did was connect this container with a redis image  then run on a custom network so that they both can intereract with each other 
-so i created my network 
-<img width="617" height="295" alt="image" src="https://github.com/user-attachments/assets/7fb5d824-4d99-413c-b940-432315b4d812" />
+### Core Functionality
+In this project I put my Docker skills to the test and containerised and deployed a Flask app using Redis. I decided to make a localhost website with a visitor counter and have separate routes for each page at the end of the link:
 
-Then i ran my docker image on the customer network - --network specifies the network the container should run on 
-<img width="612" height="169" alt="image" src="https://github.com/user-attachments/assets/fad11dd4-7dd9-40de-aa87-4dbd78df9828" />
+- **`/`** - Main page display
+- **`/count`** - Visitor count tracking page
 
-next was to make a redis data base image then run it on the same network
-normally redis would install how ever it was already installed foir me 
-<img width="612" height="268" alt="image" src="https://github.com/user-attachments/assets/b8bdfede-e92e-4156-a2d1-640855a4e5cf" />
-<img width="956" height="376" alt="image" src="https://github.com/user-attachments/assets/9b28b051-491e-4780-8eab-327b23907bf7" />
+![Main Page](https://github.com/user-attachments/assets/767f705c-d451-4aa4-ae1f-423c39809060)
+![Count Page](https://github.com/user-attachments/assets/8452f952-1c18-4d2d-ab8c-c29a5d0bfca2)
 
-Now heres where i ran into an issue 
-my app was working but the vitis counter was not even though my redis data base was connected to the customer network and running 
-<img width="691" height="713" alt="image" src="https://github.com/user-attachments/assets/d88a7e4f-7f4e-4912-a6a5-673c3bc7b721" />
+---
+
+## 🚀 Implementation Process
+
+### Phase 1: Project Structure Setup
+
+First I created my 3 necessary files: Dockerfile, Docker Compose and app.py
+
+![Initial File Structure](https://github.com/user-attachments/assets/15987638-2f02-41ca-9021-c40000118333)
+
+Next I decided I wanted to style my pages so I added HTML files for them with a templates directory
+
+![Enhanced File Structure](https://github.com/user-attachments/assets/afd01b86-bf55-4205-b1cd-d0d856a53ad6)
+
+### Phase 2: Application Development
+
+#### Flask Application Code
+I then added the code for my Flask app
+
+![Flask Application Code](https://github.com/user-attachments/assets/7e98be3d-7746-4858-8db5-a1454f24c9de)
+
+#### HTML Template Development
+After that I added the HTML needed to style my pages
+
+![HTML Templates](https://github.com/user-attachments/assets/51e47249-c12d-4c27-9084-e7e11577fd90)
+
+![Main Page Template](https://github.com/user-attachments/assets/6cc23dcc-f02c-4dab-a2f2-5d32834f5084)
+
+![Count Page Template](https://github.com/user-attachments/assets/63375824-92a0-42d1-9e38-19ae7043c2b9)
+
+### Phase 3: Local Testing & Validation
+
+Once that was complete I wanted to reinforce what I have learnt about Docker so once that was completed I first ran my app using the Python command to check if it was working
+
+![Local Testing](https://github.com/user-attachments/assets/bd19658f-7890-455c-9b11-ef34a67b4e7f)
+
+---
+
+## 🐳 Containerisation Implementation
+
+### Phase 4: Dockerfile Configuration
+
+After that I added code into my Dockerfile in order to create an image out of my web app so that I could containerise it
+
+![Dockerfile Configuration](https://github.com/user-attachments/assets/080ce2a3-3c05-498a-968f-b81b947c2e13)
+
+### Phase 5: Image Build Process
+
+Next I built the image and made it into a container.
+
+**Command used to build:**
+```bash
+docker build -t icount-test .
+```
+*The build command creates an image, -t tags it with a name, . specifies this directory*
+
+![Build Process](https://github.com/user-attachments/assets/acd89586-2a0f-4eda-b76a-474892395755)
+
+![Build Completion](https://github.com/user-attachments/assets/bfd15ef3-56dc-42ce-b684-9016ec8f772d)
+
+### Phase 6: Container Deployment
+
+**Command used to containerise and run:**
+```bash
+docker run -d --name icount-test -p 5003:5003 icount-test
+```
+*The run command runs the image as a container -d means to detach it to run as a container --name sets the name -p sets the port then at the end you choose your image*
+
+![Container Deployment](https://github.com/user-attachments/assets/825a43ac-b9ec-4aa0-9536-ac536b77a535)
+
+**Initial containerised result:**
+
+![Initial Container Result](https://github.com/user-attachments/assets/fbf015e0-1ade-459a-ae34-a547cd769c93)
+
+---
+
+## 🔗 Multi-Service Integration
+
+### Phase 7: Custom Network Configuration
+
+The next thing I did was connect this container with a Redis image then run on a custom network so that they both can interact with each other so I created my network
+
+![Network Creation](https://github.com/user-attachments/assets/7fb5d824-4d99-413c-b940-432315b4d812)
+
+Then I ran my Docker image on the customer network - --network specifies the network the container should run on
+
+![Network Assignment](https://github.com/user-attachments/assets/fad11dd4-7dd9-40de-aa87-4dbd78df9828)
+
+### Phase 8: Redis Database Integration
+
+Next was to make a Redis database image then run it on the same network normally Redis would install however it was already installed for me
+
+![Redis Setup](https://github.com/user-attachments/assets/b8bdfede-e92e-4156-a2d1-640855a4e5cf)
+
+![Redis Container Running](https://github.com/user-attachments/assets/9b28b051-491e-4780-8eab-327b23907bf7)
+
+---
+
+## 🔧 Problem Analysis & Resolution
+
+### Issue Identification
+
+Now here's where I ran into an issue - my app was working but the visit counter was not even though my Redis database was connected to the customer network and running
+
+![Problem Identification](https://github.com/user-attachments/assets/d88a7e4f-7f4e-4912-a6a5-673c3bc7b721)
+
+### Root Cause Analysis
 
 At one point, my site loaded fine, but the visit counter refused to go up. Redis (the database) was running and connected to my custom Docker network, so I thought it should work.
 
-After a bit of digging, I found the problem — my Flask app didn’t actually know where Redis was. Inside Docker, localhost means “this container,” not another one. Since I hadn’t told Flask the Redis container’s name, it kept looking in the wrong place.
+After a bit of digging, I found the problem — my Flask app didn't actually know where Redis was. Inside Docker, localhost means "this container," not another one. Since I hadn't told Flask the Redis container's name, it kept looking in the wrong place.
 
-How I fixed it:
-i first checked if both contaioners were on the same network using the docker network inspact command as i knew it couldnt be a container issue since they were up and running 
-and the result showed they was 
-<img width="592" height="289" alt="image" src="https://github.com/user-attachments/assets/f5f1d536-20c1-4cba-a06f-e53e8116edc0" />
+### Systematic Troubleshooting Approach
 
-next i searched the internet to see if i could find some resolution 
-while i dint find my exact answer i tried somethings i found on this site 
-https://www.dragonflydb.io/error-solutions/could-not-connect-to-redis-at-127-0-0-1-6379-connection-refused-docker
-such as using docker inspect redis - to search for any errors, exit code ect to my suprise everything was running
-another thing i tried was docker logs redis - while it said there was no conf file i didnt think that was the issue as it was ready to accept connections
-<img width="615" height="224" alt="image" src="https://github.com/user-attachments/assets/63060408-6cc8-4cb4-9c59-6ad0bc08d158" />
+**How I fixed it:**
 
-i then tried to change the port to match my main page port but it did not work as the port was being used 
-so i was stuck and unsure what to do so then i asked for help from one of my peers and we tried to debug for a while 
+1. **Network Verification:** I first checked if both containers were on the same network using the docker network inspect command as I knew it couldn't be a container issue since they were up and running and the result showed they were
 
-Turns out in my run command for my flask image i was missing the REDIS_HOST environmental veriable from my run command as this is needed for redis to connect a database to my flask app i found this through debugging help and shows that its okay to ask people for help when you are stuck
-<img width="646" height="278" alt="image" src="https://github.com/user-attachments/assets/150c6ba1-119e-4c08-8bd0-dfa41a93a949" />
-<img width="504" height="157" alt="image" src="https://github.com/user-attachments/assets/2430a9f5-3aea-4197-9971-4c8b0b8851cf" />
-and as you can see it works
-<img width="578" height="485" alt="image" src="https://github.com/user-attachments/assets/9e2fc3e9-4205-4484-8667-7ec09ff61ac7" />
+![Network Inspection](https://github.com/user-attachments/assets/f5f1d536-20c1-4cba-a06f-e53e8116edc0)
 
-finally it came to us9ing docker compose so i wouldnt have to make a custom network and connect both images everytime 
-it was pretty simple to make 
-<img width="724" height="499" alt="image" src="https://github.com/user-attachments/assets/b98528dd-1411-4372-869c-425f21440e14" />
-once created all i do is docker compose up 
-<img width="396" height="106" alt="Screenshot 2025-08-10 035240" src="https://github.com/user-attachments/assets/3712224a-0b34-4ffa-a201-5d3f76afcdd9" />
+2. **Research & Documentation Review:** Next I searched the internet to see if I could find some resolution whilst I didn't find my exact answer I tried some things I found on this site: https://www.dragonflydb.io/error-solutions/could-not-connect-to-redis-at-127-0-0-1-6379-connection-refused-docker
 
-and here is the final result 
-<img width="1917" height="1028" alt="Screenshot 2025-08-10 035352" src="https://github.com/user-attachments/assets/1249ec41-46c2-4257-8b2f-2ff998ff41eb" />
+3. **Container Diagnostics:** Such as using `docker inspect redis` - to search for any errors, exit code etc to my surprise everything was running another thing I tried was `docker logs redis` - whilst it said there was no conf file I didn't think that was the issue as it was ready to accept connections
 
-if i had to say this project really went well as i reenforced my knowledge on docker and was able to deploy an app with containerisation 
+![Redis Logs](https://github.com/user-attachments/assets/63060408-6cc8-4cb4-9c59-6ad0bc08d158)
 
-plans for the future:
-scale with nginx image 
-deploy live and push to amazon ecr 
+4. **Collaborative Problem Solving:** I then tried to change the port to match my main page port but it did not work as the port was being used so I was stuck and unsure what to do so then I asked for help from one of my peers and we tried to debug for a whilst
 
+### Solution Implementation
 
+**Root Cause Discovery:** Turns out in my run command for my Flask image I was missing the REDIS_HOST environmental variable from my run command as this is needed for Redis to connect a database to my Flask app I found this through debugging help and shows that it's okay to ask people for help when you are stuck
+
+![Environment Variable Fix](https://github.com/user-attachments/assets/150c6ba1-119e-4c08-8bd0-dfa41a93a949)
+
+![Working Solution](https://github.com/user-attachments/assets/2430a9f5-3aea-4197-9971-4c8b0b8851cf)
+
+**Verification:** And as you can see it works
+
+![Solution Verification](https://github.com/user-attachments/assets/9e2fc3e9-4205-4484-8667-7ec09ff61ac7)
+
+---
+
+## 📦 Docker Compose Implementation
+
+### Phase 9: Service Orchestration
+
+Finally it came to using Docker Compose so I wouldn't have to make a custom network and connect both images every time - it was pretty simple to make
+
+![Docker Compose Configuration](https://github.com/user-attachments/assets/b98528dd-1411-4372-869c-425f21440e14)
+
+Once created all I do is `docker compose up`
+
+![Docker Compose Execution](https://github.com/user-attachments/assets/3712224a-0b34-4ffa-a201-5d3f76afcdd9)
+
+**Final Result:**
+
+![Final Project Result](https://github.com/user-attachments/assets/1249ec41-46c2-4257-8b2f-2ff998ff41eb)
+
+---
+
+## 📊 Project Outcomes & Technical Skills Demonstrated
+
+### Core Competencies Applied:
+- **Docker Containerisation** - Image creation, container management, and multi-service deployment
+- **Flask Web Development** - Python web application with routing and templating
+- **Redis Database Integration** - NoSQL database implementation for persistent data storage
+- **Docker Networking** - Custom network creation and container communication
+- **Docker Compose** - Multi-service orchestration and environment management
+- **Systematic Troubleshooting** - Methodical problem identification and resolution
+- **Environment Configuration** - Container environment variables and service discovery
+
+### Key Technical Insights:
+1. **Container Communication** - Understanding that localhost within containers refers to the container itself, not other containers
+2. **Environment Variables** - Critical importance of proper environment configuration for inter-service communication
+3. **Network Isolation** - Docker networks provide isolation whilst enabling controlled communication
+4. **Service Discovery** - Container names serve as hostnames within Docker networks
+5. **Orchestration Benefits** - Docker Compose simplifies multi-service deployment and management
+
+### Problem-Solving Methodology Demonstrated:
+1. **Systematic Verification** - Network inspection and service status validation
+2. **Research & Documentation** - Leveraging external resources for problem resolution
+3. **Collaborative Debugging** - Effective peer collaboration for complex issues
+4. **Root Cause Analysis** - Identifying underlying configuration issues
+5. **Solution Validation** - Confirming fixes through testing and verification
+
+---
+
+## 🚀 Future Enhancements
+
+**Plans for the future:**
+- Scale with Nginx image
+- Deploy live and push to Amazon ECR
+
+---
+
+## 💡 Business Value & Real-World Applications
+
+This project demonstrates practical skills directly applicable to:
+- **DevOps Engineering** - Container orchestration and multi-service deployment
+
+**Project Reflection:** If I had to say this project really went well as I reinforced my knowledge on Docker and was able to deploy an app with containerisation.
+
+The systematic approach to troubleshooting and the collaborative problem-solving demonstrated here reflects industry-standard practices for production environment management and complex system integration.
